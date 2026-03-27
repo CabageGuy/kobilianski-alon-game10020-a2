@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
+    public GameManager gm;
 
     private void Start()
     {
@@ -45,4 +46,13 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(playerVelocity * Time.deltaTime);
     }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "coin")
+        {
+            gm.CollectCoin();
+            Destroy(other.gameObject);
+        }
+    }
+ 
 }

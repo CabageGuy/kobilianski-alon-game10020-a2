@@ -7,12 +7,17 @@ public class GameManager : MonoBehaviour
 {
     public int totalCoins;
     private int currentCoins = 0;
-    public Door door; 
+    public Door door;
+
 
     public UnityEvent<int> onCoinCollected;   // sends current coin count
     public UnityEvent <Door> onAllCoinsCollected;    // fires when done
-   
 
+    public void Start()
+    {
+        // Subscribe to the event
+       onAllCoinsCollected.AddListener(door.OpenDoor);
+    }
     public void CollectCoin()
     {
         currentCoins++;
