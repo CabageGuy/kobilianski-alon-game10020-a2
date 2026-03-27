@@ -7,9 +7,11 @@ public class GameManager : MonoBehaviour
 {
     public int totalCoins;
     private int currentCoins = 0;
+    public Door door; 
 
     public UnityEvent<int> onCoinCollected;   // sends current coin count
-    public UnityEvent onAllCoinsCollected;    // fires when done
+    public UnityEvent <Door> onAllCoinsCollected;    // fires when done
+   
 
     public void CollectCoin()
     {
@@ -18,10 +20,14 @@ public class GameManager : MonoBehaviour
         // Update UI
         onCoinCollected.Invoke(currentCoins);
 
+   }
+
+    public void Update()
+    {
         // Check win condition
         if (currentCoins >= totalCoins)
         {
-            onAllCoinsCollected.Invoke();
+            onAllCoinsCollected.Invoke(door);
         }
     }
 }   

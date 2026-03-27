@@ -12,7 +12,7 @@ public class Door : MonoBehaviour
         gameManager.onAllCoinsCollected.AddListener(OpenDoor);
     }
 
-    public void OpenDoor()
+    public void OpenDoor(Door door)
     {
         Debug.Log("Door Opened!");
         transform.position += new Vector3(0, 3f, 0);
